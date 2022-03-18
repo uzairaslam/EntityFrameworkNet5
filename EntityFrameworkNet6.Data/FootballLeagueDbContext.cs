@@ -12,7 +12,8 @@ namespace EntityFrameworkNet6.Data
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql("Host=localhost;Port=5438;Database=FootballLeagueDb;User ID=ov_admin;Password=ov_admin,123");
+            optionsBuilder.UseNpgsql("Host=localhost;Port=5438;Database=FootballLeagueDb;User ID=ov_admin;Password=ov_admin,123")
+                .LogTo(Console.WriteLine, new[] {DbLoggerCategory.Database.Command.Name}, Microsoft.Extensions.Logging.LogLevel.Information);
         }
         public DbSet<Team> Teams { get; set; }
         public DbSet<League> Leagues { get; set; }
